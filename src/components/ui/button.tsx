@@ -5,19 +5,22 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-background/50 backdrop-blur-sm hover:bg-accent hover:text-accent-foreground hover:border-primary/50",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        ethereum: "bg-gradient-to-r from-ethereum/20 to-primary/20 text-ethereum border border-ethereum/30 hover:from-ethereum/30 hover:to-primary/30 hover:shadow-lg hover:shadow-ethereum/25",
+        polygon: "bg-gradient-to-r from-polygon/20 to-purple-500/20 text-polygon border border-polygon/30 hover:from-polygon/30 hover:to-purple-500/30 hover:shadow-lg hover:shadow-polygon/25",
+        arbitrum: "bg-gradient-to-r from-arbitrum/20 to-blue-500/20 text-arbitrum border border-arbitrum/30 hover:from-arbitrum/30 hover:to-blue-500/30 hover:shadow-lg hover:shadow-arbitrum/25",
       },
       size: {
         default: "h-10 px-4 py-2",
