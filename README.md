@@ -1,22 +1,52 @@
-# Welcome to your Lovable project
+# Real-Time Cross-Chain Gas Price Tracker with Wallet Simulation
 
-## Project info
+A live dashboard that fetches and visualizes **real-time gas prices** from Ethereum, Polygon, and Arbitrum using native WebSocket RPCs. Simulates transaction costs and visualizes gas fee volatility using candlestick charts.
 
-**URL**: https://lovable.dev/projects/107cb40c-9670-4cb8-88da-e355ff63ea36
+---
 
-## How can I edit this code?
+##  Features
 
-There are several ways of editing your application.
+- Real-time gas tracking via native WebSocket RPCs (Ethereum, Polygon, Arbitrum)
+- Live and Simulation mode toggle
+- Transaction simulation with USD cost estimation using on-chain ETH/USDC price
+-  Candlestick chart for 15-minute interval gas volatility (per chain)
+- Uses lightweight state management with **Zustand**
+- Chart rendering via **`lightweight-charts`**
+-  ETH/USD price computed directly from Uniswap V3 `Swap` events (no SDKs)
 
-**Use Lovable**
+--
+##  Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/107cb40c-9670-4cb8-88da-e355ff63ea36) and start prompting.
+- **Frontend**: Next.js (App Router) + TailwindCSS
+- **State Management**: Zustand
+- **Web3 Interaction**: Ethers.js (`WebSocketProvider`, `getLogs`)
+- **Charting**: Lightweight-Charts
+- **Chains**: Ethereum, Polygon, Arbitrum
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+##  System Architecture
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```mermaid
+graph LR
+  A[User] --> B[Next.js Frontend]
+  B --> C[Zustand State Store]
+  C --> D{Mode}
+  D -->|Live| E[WebSocket Providers]
+  D -->|Simulate| F[Transaction Calculator]
+  E --> G[Ethereum RPC]
+  E --> H[Polygon RPC]
+  E --> I[Arbitrum RPC]
+  F --> J[Uniswap V3 ETH/USDC Pool]
+  J --> K[Parse Swap Events]
+  K --> L[Calculate ETH/USD]
+  L --> M[Gas Cost USD]
+  G --> N[Base/Priority Fees]
+  H --> N
+  I --> N
+  N --> O[Candlestick Chart]
+  O --> P[Lightweight Charts]
+  M --> P
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -60,13 +90,7 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/107cb40c-9670-4cb8-88da-e355ff63ea36) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
 
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
